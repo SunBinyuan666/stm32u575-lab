@@ -205,3 +205,22 @@ void PrintTask(void *argument)
         }
     }
 }
+
+/* 诊断钩子: 栈溢出/堆耗尽时停死循环, 便于调试器定位 */
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+{
+    (void)xTask;
+    (void)pcTaskName;
+    taskDISABLE_INTERRUPTS();
+    for (;;)
+    {
+    }
+}
+
+void vApplicationMallocFailedHook(void)
+{
+    taskDISABLE_INTERRUPTS();
+    for (;;)
+    {
+    }
+}
