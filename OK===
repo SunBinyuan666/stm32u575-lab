@@ -1,1 +1,0 @@
-===再核对参考工程MDK启动文件与GCC启动文件的PendSV符号. 我们用GCC启动文件, 参考例程用MDK. GCC启动文件的weak别名机制: thumb_set PendSV_Handler,Default_Handler. 我们的portasm定义了强符号PendSV_Handler, 链接应覆盖weak. nm确认过地址不同=
