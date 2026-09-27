@@ -4,11 +4,12 @@
 /*******************************************************************************
  * @file      main.c
  * @author    Sunbinyuan（binyuan.sun@welltest.cn）
- * @version   V1.1.0
+ * @version   V1.2.0
  * @date      2026-09-27
  * @brief     扩展板三传感器采集主程序（SHT20/AP3216C/MAX30102, I2C1）
  *
- * @history   V1.1.0 按WT-WI-PE-200 B1规范重构(函数头/宏常量/循环拆分)  ---2026-09-27
+ * @history   V1.2.0 FreeRTOS迁移(采集/打印双任务+消息队列)            ---2026-09-27
+ *            V1.1.0 按WT-WI-PE-200 B1规范重构(函数头/宏常量/循环拆分)  ---2026-09-27
  *            V1.0.0 首版: I2C扫描+三传感器轮询采集                   ---2026-09-27
  *******************************************************************************
 /* Includes ------------------------------------------------------------------*/
@@ -24,6 +25,8 @@
 #include "sht20.h"
 #include "ap3216c.h"
 #include "max30102.h"
+#include "app_freertos.h"
+#include "cmsis_os2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,7 +66,6 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 static void i2c_bus_scan(void);
 static void sensors_init(void);
-static void sensors_poll(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -221,12 +223,21 @@ int main(void)
   MX_ICACHE_Init();
   /* USER CODE BEGIN 2 */
   usart1_init();
-  printf("=== HQYJ U575 Sensor_Test V1.1.0 (B1)\r\n\r\n");
+  printf("=== HQYJ U575 Sensor_Test V1.2.0 (FreeRTOS)\r\n\r\n");
   printf("SYSCLK=%luHz\r\n\r\n", HAL_RCC_GetSysClockFreq());
 
   i2c1_init();
   i2c_bus_scan();
   sensors_init();
+
+  /* Init scheduler */
+  osKernelInitialize();  /* 初始化内核, RTOS对象在app_freertos.c创建 */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+  /* 调度器接管后永不返回, 到这里说明启动失败 */
+  printf("ERROR: scheduler returned!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -236,8 +247,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    sensors_poll();
-    HAL_Delay(MAIN_LOOP_PERIOD_MS);
+    /* 调度器已接管, 正常情况到不了这里 */
+    __disable_irq();
+    for (;;)
+    {
+    }
   }
   /* USER CODE END 3 */
 }
