@@ -231,16 +231,16 @@ int main(void)
   MX_ICACHE_Init();
   /* USER CODE BEGIN 2 */
   usart1_init();
-  printf("=== HQYJ U575 三传感器采集 V1.2.0 (FreeRTOS)\r\n");
-  printf("SYSCLK=%lu Hz | 内核: FreeRTOS V10.4.6 (1ms tick)\r\n", HAL_RCC_GetSysClockFreq());
-  printf("任务: sensorTask(1秒轮询) + printTask(队列打印)\r\n\r\n");
-  printf("--------- 串口输出数值说明 ---------\r\n");
-  printf("SHT20   : T=温度(摄氏度), RH=相对湿度(%%)\r\n");
-  printf("AP3216C : ALS=环境光原始值(16位), lux=照度(勒克斯, ALS*0.35)\r\n");
-  printf("          PS=接近原始值(10位, 越大越近), IR=红外原始值(10位)\r\n");
-  printf("          OBJ=物体靠近标志(1=有物体靠近)\r\n");
-  printf("MAX30102: Red/IR=红光/红外光学原始值(18位, 手指按压时数值增大)\r\n");
-  printf("          samples=本轮FIFO读取样本数\r\n");
+  printf("=== HQYJ U575 3-Sensor Acq V1.2.2 (FreeRTOS)\r\n");
+  printf("SYSCLK=%lu Hz | FreeRTOS V10.4.6 (1ms tick)\r\n", HAL_RCC_GetSysClockFreq());
+  printf("Tasks: sensorTask(1s poll) + printTask(queue)\r\n\r\n");
+  printf("--------- Output value units ---------\r\n");
+  printf("SHT20   : T=temperature(deg C), RH=relative humidity(%%)\r\n");
+  printf("AP3216C : ALS=ambient light raw(16bit), lux=ALS*0.35\r\n");
+  printf("          PS=proximity raw(10bit, bigger=closer), IR=IR raw(10bit)\r\n");
+  printf("          OBJ=object-near flag(1=object close)\r\n");
+  printf("MAX30102: Red/IR=optical raw(18bit, value up when finger on)\r\n");
+  printf("          samples=FIFO samples drained this round\r\n");
   printf("\r\n");
 
   i2c1_init();
