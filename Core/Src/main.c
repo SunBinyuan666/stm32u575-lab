@@ -223,8 +223,21 @@ int main(void)
   MX_ICACHE_Init();
   /* USER CODE BEGIN 2 */
   usart1_init();
-  printf("=== HQYJ U575 Sensor_Test V1.2.0 (FreeRTOS)\r\n\r\n");
-  printf("SYSCLK=%luHz\r\n\r\n", HAL_RCC_GetSysClockFreq());
+  printf("=== HQYJ U575 Sensor_Test V1.2.0 (FreeRTOS)\r\n");
+  printf("\r\n");
+  printf("[INFO] SYSCLK = %lu Hz\r\n", HAL_RCC_GetSysClockFreq());
+  printf("[INFO] Scheduler: FreeRTOS V10.4.6, tick 1000Hz\r\n");
+  printf("[INFO] Tasks: sensorTask(1s poll) + printTask(queue)\r\n");
+  printf("\r\n");
+  printf("[READ ME] ---- Output value units ----\r\n");
+  printf("  SHT20   : T = temperature (deg C), RH = relative humidity (%%)\r\n");
+  printf("  AP3216C : ALS = ambient light raw (16bit), lux = ALS x 0.35\r\n");
+  printf("            PS  = proximity raw (10bit), closer = bigger\r\n");
+  printf("            IR  = infrared raw (10bit)\r\n");
+  printf("            OBJ = object near flag (1 = object close)\r\n");
+  printf("  MAX30102: Red/IR = 18bit optical raw (finger on = value up)\r\n");
+  printf("            samples = FIFO drained this round\r\n");
+  printf("\r\n");
 
   i2c1_init();
   i2c_bus_scan();

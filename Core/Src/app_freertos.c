@@ -177,6 +177,10 @@ void SensorTask(void *argument)
         }
         (void)osMessageQueuePut(printQueueHandle, msg, 0U, 0U);
 
+        /* 循环分隔线, 便于串口阅读 */
+        (void)snprintf(msg, sizeof(msg), "----------------------------------------\r\n");
+        (void)osMessageQueuePut(printQueueHandle, msg, 0U, 0U);
+
         osDelay(SENSOR_POLL_PERIOD_MS);
     }
 }
