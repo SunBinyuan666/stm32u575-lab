@@ -25,8 +25,8 @@
 #define PRINT_QUEUE_LEN         8U      /* 打印队列深度(条) */
 #define PRINT_MSG_MAX           128U    /* 单条打印消息最大长度 */
 #define AP3216C_LUX_PER_COUNT_PCT 35U   /* 0.35lux/count as percent */
-#define SENSOR_TASK_STACK       512U    /* 采集任务栈(字节, CMSIS单位) */
-#define PRINT_TASK_STACK        512U    /* 打印任务栈(字节) */
+#define SENSOR_TASK_STACK       2048U    /* 采集任务栈(字节, CMSIS单位) */
+#define PRINT_TASK_STACK        2048U    /* 打印任务栈(字节) */
 
 /* Private variables ---------------------------------------------------------*/
 osThreadId_t sensorTaskHandle;

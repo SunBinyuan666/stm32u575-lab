@@ -1,0 +1,1 @@
+===测试堆大小8192B. SensorTask栈512B+PrintTask512B+IDLE 512B+TIMER 512B+TMR队列+队列8x128B=1KB = 够. ===

@@ -313,7 +313,21 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+/*************************************
+ * 函数名称 ： HAL_TIM_PeriodElapsedCallback
+ * 描述     ： TIM时基周期中断回调(TIM6), 累加HAL系统滴答
+ *            (FreeRTOS占用SysTick后, HAL时基由TIM6承担)
+ * 输入     ： htim - 定时器句柄
+ * 输出     ： 无
+ * 返回     ： 无
+ **************************************/
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM6)
+    {
+        HAL_IncTick();
+    }
+}
 /* USER CODE END 4 */
 
 /*************************************

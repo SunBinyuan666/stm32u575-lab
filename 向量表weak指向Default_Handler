@@ -1,0 +1,1 @@
+===决定性检查: SysTick重定向宏只在FreeRTOSConfig.h=被port.c/cmsis包含. 但it.c包含了FreeRTOS.h吗? 没有! 它的SysTick_Handler已删= 不! 宏在FreeRTOSConfig.h, port.c的xPortSysTickHandler编译时宏替换成立即名SysTick_Handler? 验证:===

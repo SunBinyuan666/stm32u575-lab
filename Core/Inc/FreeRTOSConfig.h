@@ -162,6 +162,8 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
 header file. */
 /* USER CODE BEGIN 1 */
 #define configASSERT( x ) if ((x) == 0) {taskDISABLE_INTERRUPTS(); for( ;; );}
+#define configCHECK_FOR_STACK_OVERFLOW 2
+#define configUSE_MALLOC_FAILED_HOOK 1
 /* USER CODE END 1 */
 
 #define SysTick_Handler xPortSysTickHandler
