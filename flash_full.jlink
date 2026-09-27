@@ -1,0 +1,10 @@
+si SWD
+speed 4000
+device STM32U575RITx
+r
+h
+erase
+loadfile build/Debug/Sensor_Test.hex
+r
+g
+exit

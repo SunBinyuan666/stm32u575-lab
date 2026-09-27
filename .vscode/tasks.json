@@ -1,0 +1,59 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cube: Build Debug",
+            "type": "shell",
+            "command": "cube-cmake",
+            "args": ["--build", "--preset", "Debug", "--parallel"],
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": {
+                "owner": "gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1, "line": 2, "column": 3, "severity": 4, "message": 5
+                }
+            }
+        },
+        {
+            "label": "Cube: Build Release",
+            "type": "shell",
+            "command": "cube-cmake",
+            "args": ["--build", "--preset", "Release", "--parallel"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Cube: Clean",
+            "type": "shell",
+            "command": "cube-cmake",
+            "args": ["--build", "--preset", "Debug", "--target", "clean"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash: J-Link",
+            "type": "shell",
+            "command": "JLink",
+            "args": ["-CommandFile", "flash.jlink"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash: J-Link (全擦)",
+            "type": "shell",
+            "command": "JLink",
+            "args": ["-CommandFile", "flash_full.jlink"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "shared" },
+            "problemMatcher": []
+        }
+    ]
+}
