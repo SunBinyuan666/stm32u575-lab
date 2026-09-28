@@ -1,0 +1,9 @@
+si SWD
+speed 4000
+device STM32U575RITx
+r
+h
+loadfile build/Debug/Fan_DigitalTube_PWM.hex
+r
+g
+exit
