@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (J-Link)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "executable": "${workspaceFolder}/build/Debug/8Loop_Sensor.elf",
+            "device": "STM32U575RITx",
+            "interface": "SWD",
+            "speed": 4000,
+            "runToEntryPoint": "main",
+            "serverpath": "JLinkGDBServerCL"
+        },
+        {
+            "name": "STM32Cube: ST-Link Debug",
+            "type": "stlinkgdbtarget",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "preBuild": "${command:st-stm32-ide-debug-launch.build}",
+            "runEntry": "main",
+            "imagesAndSymbols": [
+                {
+                    "imageFileName": "${workspaceFolder}/build/Debug/8Loop_Sensor.elf"
+                }
+            ]
+        }
+    ]
+}

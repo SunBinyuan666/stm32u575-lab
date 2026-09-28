@@ -1,0 +1,9 @@
+si SWD
+speed 4000
+device STM32U575RITx
+r
+h
+loadfile build/Debug/8Loop_Sensor.hex
+r
+g
+exit

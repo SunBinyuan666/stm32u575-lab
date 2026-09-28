@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "GCC ARM (cube-cmake)",
+            "compileCommands": "${workspaceFolder}/build/Debug/compile_commands.json",
+            "compilerPath": "arm-none-eabi-gcc",
+            "intelliSenseMode": "gcc-arm"
+        }
+    ],
+    "version": 4
+}
