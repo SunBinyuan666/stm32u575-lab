@@ -1,0 +1,19 @@
+# Build output
+build/
+
+# Keil MDK build artifacts
+MDK-ARM/*.uvguix.*
+MDK-ARM/DebugConfig/
+MDK-ARM/Listings/
+MDK-ARM/Objects/
+MDK-ARM/RTE/
+MDK-ARM/*.bak
+
+# VSCode local
+.vscode/*.local.json
+
+# Editor / OS junk
+*.bak
+*~
+.DS_Store
+Thumbs.db
