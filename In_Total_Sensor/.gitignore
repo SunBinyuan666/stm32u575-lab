@@ -1,0 +1,6 @@
+build/
+*.map
+*.elf
+*.hex
+*.bin
+.vscode/settings.local.json

@@ -1,0 +1,33 @@
+# HAL driver / CMSIS (regenerable via CubeMX, ~62MB per project)
+**/Drivers/
+
+# Build output
+build/
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+
+# Keil MDK build artifacts
+MDK-ARM/*.uvguix.*
+MDK-ARM/DebugConfig/
+MDK-ARM/RTE/
+MDK-ARM/Listings/
+MDK-ARM/Objects/
+*.bak
+
+# CubeIDE / Eclipse
+.settings/
+*.launch
+
+# IDE
+.vscode/
+.idea/
+
+# J-Link temp logs
+*.jlink
+JLinkLog.txt
+*.log
